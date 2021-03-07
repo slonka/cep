@@ -1,14 +1,13 @@
-package pl.slonka.cep.parser
+package pl.slonka.cep.converter
 
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
-internal class ParserTest {
+internal class ExpressionToTablePrinterConverterTest {
 
     @Test
-    fun testParse() {
+    fun testValid() {
         // given
-        val parser = Parser()
         val expected = """
             minute        0 15 30 45
             hour          0
@@ -18,7 +17,7 @@ internal class ParserTest {
             command       /usr/bin/find""".trimIndent()
 
         // when
-        val expanded = parser.parse("*/15 0 1,15 * 1-5 /usr/bin/find")
+        val expanded = ExpressionToTable.convert("*/15 0 1,15 * 1-5 /usr/bin/find")
 
         // then
         assertEquals(expected, expanded)

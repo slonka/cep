@@ -1,12 +1,6 @@
 package pl.slonka.cep.parser
 
-import java.lang.IllegalArgumentException
-
-class Star: Expression {
-    override fun values(min: Int, max: Int): List<Int> {
-        return IntRange(min, max).toList()
-    }
-}
+import pl.slonka.cep.expression.Star
 
 class StarParser {
     companion object {

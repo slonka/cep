@@ -1,9 +1,9 @@
 package pl.slonka.cep.printer
 
-import pl.slonka.cep.parser.CronExpression
-import pl.slonka.cep.parser.Expression
+import pl.slonka.cep.expression.CronExpression
+import pl.slonka.cep.expression.Expression
 
-class Table {
+class TablePrinter {
     companion object {
         const val PADDING = 14
         const val SEPARATOR = " "

@@ -1,17 +1,6 @@
 package pl.slonka.cep.parser
 
-import java.lang.IllegalArgumentException
-import java.lang.NumberFormatException
-
-class Value(val value: Int): Expression {
-    override fun values(min: Int, max: Int): List<Int> {
-        if (value < min || value > max) {
-            throw InvalidValueExpression("Value $value outside of min/max range ($min, $max)")
-        }
-
-        return listOf(value)
-    }
-}
+import pl.slonka.cep.expression.Value
 
 class ValueParser {
     companion object {

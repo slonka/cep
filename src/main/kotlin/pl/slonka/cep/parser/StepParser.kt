@@ -1,15 +1,6 @@
 package pl.slonka.cep.parser
 
-import java.lang.IllegalArgumentException
-import java.lang.NumberFormatException
-
-class Step (val expression: Expression, val step: Int): Expression {
-    override fun values(min: Int, max: Int): List<Int> {
-        return expression.values(min, max).filterIndexed { index, _ ->
-            index.rem(step) == 0
-        }
-    }
-}
+import pl.slonka.cep.expression.Step
 
 class StepParser {
     companion object {
@@ -21,7 +12,7 @@ class StepParser {
                         "It is defined in the following format: 'expression'/'positive integer'.")
             }
 
-            val expression = Expression.parseSimple(expressionAndStep[0])
+            val expression = ExpressionParser.parseSimple(expressionAndStep[0])
             val step: Int
 
             try {
