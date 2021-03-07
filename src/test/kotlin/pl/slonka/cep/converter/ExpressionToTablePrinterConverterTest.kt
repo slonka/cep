@@ -1,7 +1,9 @@
 package pl.slonka.cep.converter
 
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.Test
+import pl.slonka.cep.parser.InvalidRangeExpression
 
 internal class ExpressionToTablePrinterConverterTest {
 
@@ -21,5 +23,13 @@ internal class ExpressionToTablePrinterConverterTest {
 
         // then
         assertEquals(expected, expanded)
+    }
+
+    @Test
+    fun testInvalid() {
+        assertThrows(InvalidRangeExpression::class.java) {
+            // reversed range
+            ExpressionToTable.convert("*/15 0 1,15 * 5-1 /usr/bin/find")
+        }
     }
 }

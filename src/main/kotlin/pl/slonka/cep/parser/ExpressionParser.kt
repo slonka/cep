@@ -1,28 +1,29 @@
 package pl.slonka.cep.parser
 
 import pl.slonka.cep.expression.Expression
+import pl.slonka.cep.expression.MinMax
 
 class ExpressionParser {
     companion object {
-        fun parseComplex(input: String): List<Expression> {
+        fun parseComplex(input: String, limit: MinMax): List<Expression> {
             val parts = input.split(",")
 
-            return parts.map { part -> parseSimple(part) }
+            return parts.map { part -> parseSimple(part, limit) }
         }
 
-        fun parseSimple(input: String): Expression {
+        fun parseSimple(input: String, limit: MinMax): Expression {
             return when {
                 input.contains("/") -> {
-                    StepParser.parse(input)
+                    StepParser.parse(input, limit)
                 }
                 input.contains("-") -> {
-                    RangeParser.parse(input)
+                    RangeParser.parse(input, limit)
                 }
                 input.contains("*") -> {
                     StarParser.parse(input)
                 }
                 else -> {
-                    ValueParser.parse(input)
+                    ValueParser.parse(input, limit)
                 }
             }
         }
